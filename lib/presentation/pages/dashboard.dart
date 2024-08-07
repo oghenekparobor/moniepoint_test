@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moniepoint_test/core/extensions/context.dart';
 
 class Dashboard extends ConsumerStatefulWidget {
   const Dashboard({super.key});
@@ -11,6 +12,10 @@ class Dashboard extends ConsumerStatefulWidget {
 class _DashboardState extends ConsumerState<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Stack(
+        children: [],
+      ),
+    );
   }
 }
