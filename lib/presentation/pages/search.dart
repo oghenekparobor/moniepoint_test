@@ -1,10 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moniepoint_test/core/app_strings.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 import 'package:moniepoint_test/presentation/pages/sub/search.bar.dart';
@@ -43,7 +40,7 @@ class _SearchState extends ConsumerState<Search> {
           children: [
             for (var i = 0; i < 6; i++) ...{
               MapTile(
-                top: random.nextDouble() * (screenHeight - 100),
+                bottom: random.nextDouble() * (screenHeight - 200),
                 left: random.nextDouble() * (screenWidth - 100),
               ),
             },

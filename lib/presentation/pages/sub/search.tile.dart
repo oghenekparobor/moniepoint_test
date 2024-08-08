@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
@@ -22,34 +21,54 @@ class MapTile extends StatefulWidget {
   State<MapTile> createState() => _MapTileState();
 }
 
-class _MapTileState extends State<MapTile> {
-  double width = 120;
-  Timer? timer;
+class _MapTileState extends State<MapTile> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _heightAnimation;
+  late Animation<double> _widthAnimation;
 
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(milliseconds: 2000) + Durations.extralong4,
-        () {
-      timer = Timer.periodic(const Duration(milliseconds: 15), (timer) {
-        if (mounted) {
-          setState(() {
-            if (width > 50.w) {
-              width -= 1.w;
-            } else {
-              timer.cancel();
-            }
-          });
-        }
-      });
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 7000),
+      vsync: this,
+    );
+
+    _heightAnimation = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween(begin: 0, end: 50),
+        weight: 1,
+      ),
+      TweenSequenceItem(
+        tween: ConstantTween(50),
+        weight: 1,
+      ),
+    ]).animate(_controller);
+
+    _widthAnimation = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: ConstantTween(0),
+        weight: 2,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: 0, end: 120),
+        weight: 3,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: 120, end: 50),
+        weight: 3,
+      ),
+    ]).animate(_controller);
+
+    Future.delayed(Durations.medium1, () {
+      _controller.forward();
     });
   }
 
   @override
   void dispose() {
-    timer?.cancel();
-
+    _controller.dispose();
     super.dispose();
   }
 
@@ -60,43 +79,47 @@ class _MapTileState extends State<MapTile> {
       left: widget.left?.w,
       right: widget.right?.w,
       bottom: widget.bottom?.h,
-      child: ZoomIn(
-        delay: Durations.extralong4,
-        child: AnimatedContainer(
-          width: width.w,
-          duration: const Duration(milliseconds: 50), // Animation duration
-          padding: EdgeInsets.all(16.sp),
-          decoration: BoxDecoration(
-            color: context.theme.colorScheme.secondary,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.r),
-              topRight: Radius.circular(10.r),
-              bottomRight: Radius.circular(10.r),
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Container(
+            width: _widthAnimation.value.w,
+            height: _heightAnimation.value.h,
+            padding: EdgeInsets.all(16.sp),
+            decoration: BoxDecoration(
+              color: context.theme.colorScheme.secondary,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10.r),
+                topRight: Radius.circular(10.r),
+                bottomRight: Radius.circular(10.r),
+              ),
             ),
-          ),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.satellite_alt_rounded,
-                  size: 18.sp,
-                  color: Colors.white,
-                ),
-                if (width > 60.w) ...{
-                  SizedBox(width: 8.w),
-                  Text(
-                    '11mn ℙ',
-                    style: context.textTheme.bodyMedium!.copyWith(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (_heightAnimation.value > 40) ...{
+                    Icon(
+                      Icons.satellite_alt_rounded,
+                      size: 18.sp,
                       color: Colors.white,
                     ),
-                  ),
-                },
-              ],
+                  },
+                  if (_widthAnimation.value > 60.w) ...{
+                    SizedBox(width: 8.w),
+                    Text(
+                      '11mn ℙ',
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                  },
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
