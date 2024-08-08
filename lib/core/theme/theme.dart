@@ -11,7 +11,7 @@ ThemeData theme(BuildContext context) => ThemeData(
         ),
         displayMedium: TextStyle(
           color: const Color(0xFF232220),
-          fontSize: 32.sp,
+          fontSize: 36.sp,
         ),
         displaySmall: TextStyle(
           color: const Color(0xFF232220),

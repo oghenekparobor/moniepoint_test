@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:moniepoint_test/core/app_strings.dart';
 import 'package:moniepoint_test/core/storage/generic.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -19,5 +22,21 @@ class AppNotifier extends _$AppNotifier with ChangeNotifier {
     activeScreen.close();
 
     super.dispose();
+  }
+
+  List<String> allImages = [
+    Strings.img1,
+    Strings.img2,
+    Strings.img3,
+    Strings.img4,
+    Strings.img5,
+    Strings.img6,
+    Strings.img7,
+  ];
+
+  List<String> get images {
+    allImages.shuffle(Random());
+
+    return allImages.take(4).toList();
   }
 }

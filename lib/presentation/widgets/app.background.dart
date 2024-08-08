@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 
@@ -15,11 +14,11 @@ class AppBackground extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          end: Alignment.centerRight,
           colors: [
-            Colors.white,
-            Colors.white,
-            context.theme.colorScheme.secondary.withOpacity(.3),
+            context.theme.colorScheme.secondary.withOpacity(.01),
+            context.theme.colorScheme.secondary.withOpacity(.01),
+            context.theme.colorScheme.secondary.withOpacity(.38),
           ],
         ),
       ),

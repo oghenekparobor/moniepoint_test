@@ -13,4 +13,5 @@ class Strings {
   static String img6 = "6".jpg;
   static String img7 = "7".jpg;
   static String map = "map".jpg;
+  static String avatar = "avatar".png;
 }

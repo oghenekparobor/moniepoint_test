@@ -22,7 +22,7 @@ class FloatingBottomNav extends ConsumerWidget {
       child: Padding(
         padding: EdgeInsets.only(bottom: 30.h),
         child: SlideInUp(
-          delay: const Duration(milliseconds: 1500),
+          delay: Durations.extralong4 * 6.5,
           child: Container(
             decoration: BoxDecoration(
               color: const Color(0xFF2B2B2B).withOpacity(.95),
