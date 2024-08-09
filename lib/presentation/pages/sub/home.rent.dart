@@ -28,12 +28,14 @@ class _RentWidgetState extends ConsumerState<RentWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final app = ref.watch(appNotifierProvider);
 
-      timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
-        if (app.rentCounter.value < maxExtent) {
-          app.rentCounter.emit(app.rentCounter.value + 4);
-        } else {
-          timer.cancel();
-        }
+      Future.delayed(Durations.long2, () {
+        timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
+          if (app.rentCounter.value < maxExtent) {
+            app.rentCounter.emit(app.rentCounter.value + 4);
+          } else {
+            timer.cancel();
+          }
+        });
       });
     });
   }

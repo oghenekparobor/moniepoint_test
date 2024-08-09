@@ -27,12 +27,14 @@ class _BuyWidgetState extends ConsumerState<BuyWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final app = ref.watch(appNotifierProvider);
 
-      timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
-        if (app.buyCounter.value < maxExtent) {
-          app.buyCounter.emit(app.buyCounter.value + 2);
-        } else {
-          timer.cancel();
-        }
+      Future.delayed(Durations.long2, () {
+        timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
+          if (app.buyCounter.value < maxExtent) {
+            app.buyCounter.emit(app.buyCounter.value + 2);
+          } else {
+            timer.cancel();
+          }
+        });
       });
     });
   }
