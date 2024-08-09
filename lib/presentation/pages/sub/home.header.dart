@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
@@ -35,6 +37,12 @@ class _HomeHeaderTextState extends State<HomeHeaderText>
     Future.delayed((Durations.extralong4 * 2), () {
       if (mounted && isControllerInitialized) {
         _controller.forward();
+
+        _controller.addListener(() {
+          if (_controller.isCompleted) {
+            setState(() {});
+          }
+        });
       }
     });
   }
@@ -67,24 +75,26 @@ class _HomeHeaderTextState extends State<HomeHeaderText>
               );
             },
           ),
-          Positioned(
-            top: 50,
-            child: Container(
-              width: context.mediaQuery.size.width,
-              height: 40.h,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    Color(0xFFF8F8F7),
-                    Color(0xFFF8F3EC),
-                    Color(0xFFF9EEE1),
-                  ],
+          if (!_controller.isCompleted) ...{
+            Positioned(
+              top: 50,
+              child: Container(
+                width: context.mediaQuery.size.width,
+                height: 40.h,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Color(0xFFF8F8F7),
+                      Color(0xFFF8F3EC),
+                      Color(0xFFF9EEE1),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
+          },
           AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
@@ -97,24 +107,26 @@ class _HomeHeaderTextState extends State<HomeHeaderText>
               );
             },
           ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: context.mediaQuery.size.width,
-              height: 40.h,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    Color(0xFFF8F8F7),
-                    Color(0xFFF8F3EC),
-                    Color(0xFFF9EEE1),
-                  ],
+          if (!_controller.isCompleted) ...{
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: context.mediaQuery.size.width,
+                height: Platform.isIOS ? 40.h : 35.h,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Color(0xFFF8F8F7),
+                      Color(0xFFF8F3EC),
+                      Color(0xFFF9EEE1),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
+          },
         ],
       ),
     );

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,7 +46,7 @@ class _HomeState extends ConsumerState<Home> {
         if (scrollCtrl!.position.pixels ==
             scrollCtrl!.position.maxScrollExtent) {
           if (topExtent == 1) {
-            setState(() => topExtent = .6);
+            setState(() => topExtent = Platform.isIOS ? .6 : .53);
           }
         }
       }
