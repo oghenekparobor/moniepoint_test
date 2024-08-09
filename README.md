@@ -1,6 +1,6 @@
 # moniepoint_test
 
-![Video Demo]([assets/demo.gif](https://github.com/oghenekparobor/moniepoint_test/blob/main/screenrecord/testrecording-ezgif.com-video-to-gif-converter.gif))
+![Video Demo]([assets/demo.gif](screenrecord/testrecording-ezgif.com-video-to-gif-converter.gif))
 
 ### Project Setup
 - Click on the code button to see the repo link
