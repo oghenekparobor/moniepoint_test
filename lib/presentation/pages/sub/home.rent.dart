@@ -28,7 +28,7 @@ class _RentWidgetState extends ConsumerState<RentWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final app = ref.watch(appNotifierProvider);
 
-      Future.delayed(Durations.long2, () {
+      Future.delayed(Durations.extralong4 * 2, () {
         timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
           if (app.rentCounter.value < maxExtent) {
             app.rentCounter.emit(app.rentCounter.value + 4);
