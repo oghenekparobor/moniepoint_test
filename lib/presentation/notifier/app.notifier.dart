@@ -15,13 +15,6 @@ class AppNotifier extends _$AppNotifier with ChangeNotifier {
 
   var activeScreen = GenericStore<int>(2);
 
-  @override
-  void dispose() {
-    activeScreen.close();
-
-    super.dispose();
-  }
-
   List<String> allImages = [
     Strings.img1,
     Strings.img2,
@@ -40,4 +33,13 @@ class AppNotifier extends _$AppNotifier with ChangeNotifier {
 
   var buyCounter = GenericStore<int>(100);
   var rentCounter = GenericStore<int>(100);
+
+  @override
+  void dispose() {
+    activeScreen.close();
+    buyCounter.close();
+    rentCounter.close();
+
+    super.dispose();
+  }
 }
