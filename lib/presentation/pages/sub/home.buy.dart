@@ -2,38 +2,38 @@ import 'dart:async';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 import 'package:moniepoint_test/core/extensions/string.dart';
+import 'package:moniepoint_test/presentation/notifier/app.notifier.dart';
 
-class BuyWidget extends StatefulWidget {
+class BuyWidget extends ConsumerStatefulWidget {
   const BuyWidget({
     super.key,
   });
 
   @override
-  State<BuyWidget> createState() => _BuyWidgetState();
+  ConsumerState<BuyWidget> createState() => _BuyWidgetState();
 }
 
-class _BuyWidgetState extends State<BuyWidget> {
+class _BuyWidgetState extends ConsumerState<BuyWidget> {
   Timer? timer;
-  int current = 100;
   int maxExtent = 1034;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final app = ref.watch(appNotifierProvider);
 
-    timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
-      if (mounted) {
-        setState(() {
-          if (current < maxExtent) {
-            current += 2;
-          } else {
-            timer.cancel();
-          }
-        });
-      }
+      timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
+        if (app.buyCounter.value < maxExtent) {
+          app.buyCounter.emit(app.buyCounter.value + 2);
+        } else {
+          timer.cancel();
+        }
+      });
     });
   }
 
@@ -45,6 +45,8 @@ class _BuyWidgetState extends State<BuyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final app = ref.watch(appNotifierProvider);
+
     return Expanded(
       child: ZoomIn(
         delay: Durations.extralong4 * 3,
@@ -67,12 +69,20 @@ class _BuyWidgetState extends State<BuyWidget> {
                 ),
               ),
               const Spacer(),
-              Text(
-                '$current'.addSpaceBetweenFirstAndFourthDigit,
-                style: context.textTheme.displayLarge!.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
+              StreamBuilder<int>(
+                stream: app.buyCounter.stream,
+                builder: (context, snapshot) {
+                  if (snapshot.data == null) return const SizedBox.shrink();
+                  final int current = snapshot.data!;
+
+                  return Text(
+                    '$current'.addSpaceBetweenFirstAndFourthDigit,
+                    style: context.textTheme.displayLarge!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  );
+                },
               ),
               4.verticalSpace,
               Text(

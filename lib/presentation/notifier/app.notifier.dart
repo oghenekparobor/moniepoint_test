@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:moniepoint_test/core/app_strings.dart';
 import 'package:moniepoint_test/core/storage/generic.dart';
@@ -38,4 +37,7 @@ class AppNotifier extends _$AppNotifier with ChangeNotifier {
 
     return allImages.take(4).toList();
   }
+
+  var buyCounter = GenericStore<int>(100);
+  var rentCounter = GenericStore<int>(100);
 }

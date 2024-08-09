@@ -2,38 +2,39 @@ import 'dart:async';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 import 'package:moniepoint_test/core/extensions/string.dart';
+import 'package:moniepoint_test/presentation/notifier/app.notifier.dart';
 
-class RentWidget extends StatefulWidget {
+class RentWidget extends ConsumerStatefulWidget {
   const RentWidget({
     super.key,
   });
 
   @override
-  State<RentWidget> createState() => _RentWidgetState();
+  ConsumerState<RentWidget> createState() => _RentWidgetState();
 }
 
-class _RentWidgetState extends State<RentWidget> {
+class _RentWidgetState extends ConsumerState<RentWidget> {
   Timer? timer;
-  int current = 100;
   int maxExtent = 2212;
 
   @override
   void initState() {
     super.initState();
 
-    timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
-      if (mounted) {
-        setState(() {
-          if (current < maxExtent) {
-            current += 4;
-          } else {
-            timer.cancel();
-          }
-        });
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final app = ref.watch(appNotifierProvider);
+
+      timer = Timer.periodic(const Duration(milliseconds: 6), (timer) {
+        if (app.rentCounter.value < maxExtent) {
+          app.rentCounter.emit(app.rentCounter.value + 4);
+        } else {
+          timer.cancel();
+        }
+      });
     });
   }
 
@@ -45,6 +46,8 @@ class _RentWidgetState extends State<RentWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final app = ref.watch(appNotifierProvider);
+
     return Expanded(
       child: ZoomIn(
         delay: Durations.extralong4 * 3,
@@ -75,12 +78,20 @@ class _RentWidgetState extends State<RentWidget> {
                 ),
               ),
               const Spacer(),
-              Text(
-                '$current'.addSpaceBetweenFirstAndFourthDigit,
-                style: context.textTheme.displayLarge!.copyWith(
-                  color: context.theme.colorScheme.tertiary,
-                  fontWeight: FontWeight.w600,
-                ),
+              StreamBuilder<int>(
+                stream: app.rentCounter.stream,
+                builder: (context, snapshot) {
+                  if (snapshot.data == null) return const SizedBox.shrink();
+                  final int current = snapshot.data!;
+
+                  return Text(
+                    '$current'.addSpaceBetweenFirstAndFourthDigit,
+                    style: context.textTheme.displayLarge!.copyWith(
+                      color: context.theme.colorScheme.tertiary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  );
+                },
               ),
               4.verticalSpace,
               Text(
