@@ -22,4 +22,14 @@ class Strings {
   static String iMessage = "message".svg;
   static String iSearch = "search".svg;
   static String iUser = "user".svg;
+  static String iShield = "shield".svg;
+  static String iCart = "cart".svg;
+  static String iLayers = "layers".svg;
+  static String iLocation = "location".svg;
+  static String iMenu = "menu".svg;
+  static String iLocationPin = "pin".svg;
+  static String iFilter = "filter".svg;
+  static String iSearchLine = "search-lined".svg;
+  static String iWallet = "wallet".svg;
+  static String iSettings = "settings".svg;
 }

@@ -2,8 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glass/glass.dart';
+import 'package:moniepoint_test/core/app_strings.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 import 'package:moniepoint_test/core/extensions/widget.dart';
+import 'package:moniepoint_test/presentation/widgets/icon.dart';
 
 class SearchFloatingButton extends StatefulWidget {
   const SearchFloatingButton({
@@ -33,10 +35,10 @@ class _SearchFloatingButtonState extends State<SearchFloatingButton> {
           itemBuilder: (BuildContext bc) {
             return [
               for (var i in [
-                {Icons.shield_outlined: 'Cosy areas'},
-                {Icons.wallet: 'Prices'},
-                {Icons.shopping_basket_outlined: 'Infrastructure'},
-                {Icons.stacked_bar_chart: 'Without any layer'},
+                {Strings.iShield: 'Cosy areas'},
+                {Strings.iWallet: 'Prices'},
+                {Strings.iCart: 'Infrastructure'},
+                {Strings.iLayers: 'Without any layer'},
               ]) ...{
                 PopupMenuItem(
                   value: i.entries.first.value,
@@ -44,7 +46,7 @@ class _SearchFloatingButtonState extends State<SearchFloatingButton> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       8.horizontalSpace,
-                      Icon(
+                      AppIcon(
                         i.entries.first.key,
                         color: i.entries.first.value == 'Prices'
                             ? context.theme.colorScheme.secondary
@@ -71,8 +73,8 @@ class _SearchFloatingButtonState extends State<SearchFloatingButton> {
               child: CircleAvatar(
                 maxRadius: 25.r,
                 backgroundColor: Colors.white10,
-                child: const Icon(
-                  Icons.auto_awesome_motion_outlined,
+                child: AppIcon(
+                  Strings.iLocation,
                   color: Colors.white70,
                 ),
               ).asGlass(
@@ -90,8 +92,8 @@ class _SearchFloatingButtonState extends State<SearchFloatingButton> {
               child: CircleAvatar(
                 backgroundColor: Colors.white10,
                 maxRadius: 25.r,
-                child: const Icon(
-                  Icons.location_on_outlined,
+                child: AppIcon(
+                  Strings.iLocationPin,
                   color: Colors.white70,
                 ),
               ).asGlass(
@@ -115,10 +117,9 @@ class _SearchFloatingButtonState extends State<SearchFloatingButton> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
-                      Icons.format_align_left,
+                    AppIcon(
+                      Strings.iMenu,
                       color: Colors.white70,
-                      size: 20.sp,
                     ),
                     8.horizontalSpace,
                     Text(

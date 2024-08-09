@@ -6,6 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 import 'package:moniepoint_test/presentation/notifier/app.notifier.dart';
 
+import 'icon.dart';
+
 class FloatingBottomNav extends ConsumerWidget {
   const FloatingBottomNav({
     super.key,
@@ -63,10 +65,9 @@ class FloatingBottomNav extends ConsumerWidget {
                                       : EdgeInsets.symmetric(horizontal: 2.w),
                                   child: Padding(
                                     padding: EdgeInsets.all(12.sp),
-                                    child: SvgPicture.asset(
+                                    child: AppIcon(
                                       e.entries.first.key,
-                                      height: index == active ? 24.sp : 20.sp,
-                                      width: index == active ? 24.sp : 20.sp,
+                                      size: index == active ? 24.sp : 20.sp,
                                     ),
                                   ),
                                 ),

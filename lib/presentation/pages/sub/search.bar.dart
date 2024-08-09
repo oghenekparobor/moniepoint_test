@@ -1,8 +1,9 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moniepoint_test/core/app_strings.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
+import 'package:moniepoint_test/presentation/widgets/icon.dart';
 
 class MySearchBar extends StatelessWidget {
   const MySearchBar({
@@ -22,8 +23,14 @@ class MySearchBar extends StatelessWidget {
               delay: Durations.extralong3,
               child: TextField(
                 onChanged: (value) {},
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(CupertinoIcons.search),
+                decoration: InputDecoration(
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(12.sp),
+                    child: AppIcon(
+                      Strings.iSearchLine,
+                      color: Colors.black,
+                    ),
+                  ),
                   hintText: 'Saint Peterburg',
                   contentPadding: EdgeInsets.zero,
                 ),
@@ -36,9 +43,9 @@ class MySearchBar extends StatelessWidget {
             child: CircleAvatar(
               maxRadius: 23.r,
               backgroundColor: Colors.white,
-              child: Icon(
-                Icons.graphic_eq_outlined,
-                size: 20.sp,
+              child: AppIcon(
+                Strings.iSettings,
+                color: Colors.black,
               ),
             ),
           ),

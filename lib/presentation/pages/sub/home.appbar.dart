@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moniepoint_test/core/app_strings.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
+import 'package:moniepoint_test/presentation/widgets/icon.dart';
 
 class HomeAppbar extends StatefulWidget {
   const HomeAppbar({
@@ -70,8 +71,8 @@ class _HomeAppbarState extends State<HomeAppbar> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.location_pin,
+                  AppIcon(
+                    Strings.iLocationPin,
                     color: context.theme.colorScheme.tertiary,
                   ),
                   8.horizontalSpace,
