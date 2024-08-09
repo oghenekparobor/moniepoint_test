@@ -32,4 +32,5 @@ class Strings {
   static String iSearchLine = "search-lined".svg;
   static String iWallet = "wallet".svg;
   static String iSettings = "settings".svg;
+  static String iBuilding = "building".svg;
 }

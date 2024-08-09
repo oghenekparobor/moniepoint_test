@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moniepoint_test/core/app_strings.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 import 'dart:async';
+
+import 'package:moniepoint_test/presentation/widgets/icon.dart';
 
 class MapTile extends StatefulWidget {
   const MapTile({
@@ -104,10 +107,9 @@ class _MapTileState extends State<MapTile> with SingleTickerProviderStateMixin {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (_heightAnimation.value > 40) ...{
-                    Icon(
-                      Icons.satellite_alt_rounded,
+                    AppIcon(
+                      Strings.iBuilding,
                       size: 18.sp,
-                      color: Colors.white,
                     ),
                   },
                   if (_widthAnimation.value > 60.w) ...{
