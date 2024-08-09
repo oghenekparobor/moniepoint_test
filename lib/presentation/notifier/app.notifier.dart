@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:moniepoint_test/core/app_strings.dart';
@@ -35,7 +34,7 @@ class AppNotifier extends _$AppNotifier with ChangeNotifier {
   ];
 
   List<String> get images {
-    allImages.shuffle(Random());
+    // allImages.shuffle(Random());
 
     return allImages.take(4).toList();
   }

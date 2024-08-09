@@ -12,22 +12,27 @@ ThemeData theme(BuildContext context) => ThemeData(
         displayMedium: TextStyle(
           color: const Color(0xFF232220),
           fontSize: 36.sp,
+          fontFamily: 'Euclid',
         ),
         displaySmall: TextStyle(
           color: const Color(0xFF232220),
           fontSize: 28.sp,
+          fontFamily: 'Euclid',
         ),
         bodyLarge: TextStyle(
           color: const Color(0xFF232220),
           fontSize: 18.sp,
+          fontFamily: 'Euclid',
         ),
         bodyMedium: TextStyle(
           color: const Color(0xFF232220),
           fontSize: 16.sp,
+          fontFamily: 'Euclid',
         ),
         bodySmall: TextStyle(
           color: const Color(0xFF232220),
           fontSize: 13.sp,
+          fontFamily: 'Euclid',
         ),
       ),
       primaryColor: const Color(0xFF232220),
