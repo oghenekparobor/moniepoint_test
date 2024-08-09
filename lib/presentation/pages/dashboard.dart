@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moniepoint_test/core/app_strings.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 import 'package:moniepoint_test/presentation/notifier/app.notifier.dart';
 import 'package:moniepoint_test/presentation/pages/home.dart';
@@ -28,21 +29,25 @@ class _DashboardState extends ConsumerState<Dashboard> {
 
           final active = snapshot.data!;
 
-          final List<Map<IconData, Widget>> screens = [
-            {CupertinoIcons.search: const Search()},
+          final List<Map<String, Widget>> screens = [
             {
-              CupertinoIcons.chat_bubble_fill: Container(
+              Strings.iSearch: const Search(),
+            },
+            {
+              Strings.iMessage: Container(
                 color: context.theme.colorScheme.secondary,
               )
             },
-            {Icons.home: const Home()},
             {
-              CupertinoIcons.heart_fill: Container(
+              Strings.iHome: const Home(),
+            },
+            {
+              Strings.iHeart: Container(
                 color: context.theme.colorScheme.primary,
               )
             },
             {
-              CupertinoIcons.person_fill: Container(
+              Strings.iUser: Container(
                 color: context.theme.colorScheme.tertiary,
               )
             },

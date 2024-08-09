@@ -5,6 +5,7 @@ class Strings {
 
   static const String title = "MPRealestate";
 
+  // images
   static String img1 = "1".jpg;
   static String img2 = "2".jpg;
   static String img3 = "3".jpg;
@@ -14,4 +15,11 @@ class Strings {
   static String img7 = "7".jpg;
   static String map = "map".jpg;
   static String avatar = "avatar".png;
+
+  // icons
+  static String iHome = "home".svg;
+  static String iHeart = "heart".svg;
+  static String iMessage = "message".svg;
+  static String iSearch = "search".svg;
+  static String iUser = "user".svg;
 }

@@ -1,6 +1,7 @@
 extension StringExt on String {
   String get jpg => 'assets/images/$this.jpg';
   String get png => 'assets/images/$this.png';
+  String get svg => 'assets/icons/$this.svg';
 
   String get addSpaceBetweenFirstAndFourthDigit {
     if (length < 4) {

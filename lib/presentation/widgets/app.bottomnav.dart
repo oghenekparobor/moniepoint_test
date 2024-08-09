@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:moniepoint_test/core/extensions/context.dart';
 import 'package:moniepoint_test/presentation/notifier/app.notifier.dart';
 
@@ -11,7 +12,7 @@ class FloatingBottomNav extends ConsumerWidget {
     required this.screens,
   });
 
-  final List<Map<IconData, Widget>> screens;
+  final List<Map<String, Widget>> screens;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -57,10 +58,16 @@ class FloatingBottomNav extends ConsumerWidget {
                                         ? context.theme.colorScheme.secondary
                                         : context.theme.colorScheme.primary,
                                   ),
-                                  child: Icon(
-                                    e.entries.first.key,
-                                    color: Colors.white,
-                                    size: index == active ? 24.sp : 20.sp,
+                                  margin: index == active
+                                      ? EdgeInsets.zero
+                                      : EdgeInsets.symmetric(horizontal: 2.w),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(12.sp),
+                                    child: SvgPicture.asset(
+                                      e.entries.first.key,
+                                      height: index == active ? 24.sp : 20.sp,
+                                      width: index == active ? 24.sp : 20.sp,
+                                    ),
                                   ),
                                 ),
                               ),

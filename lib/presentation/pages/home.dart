@@ -1,7 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -11,6 +9,7 @@ import 'package:moniepoint_test/presentation/notifier/app.notifier.dart';
 
 import 'sub/home.appbar.dart';
 import 'sub/home.buy.dart';
+import 'sub/home.header.dart';
 import 'sub/home.rent.dart';
 import 'sub/home.tile.dart';
 
@@ -78,50 +77,7 @@ class _HomeState extends ConsumerState<Home> {
                 ),
               ),
               4.verticalSpace,
-              Animate(
-                effects: [
-                  SlideEffect(
-                      begin: const Offset(0, 1),
-                      end: const Offset(0, 0),
-                      curve: Curves.easeInOut,
-                      delay: Durations.extralong4 * 2),
-                ],
-                child: Text(
-                  'let\'s select your',
-                  style: context.textTheme.displayLarge,
-                ),
-              ),
-              Animate(
-                effects: [
-                  SlideEffect(
-                      begin: const Offset(0, 1),
-                      end: const Offset(0, 0),
-                      curve: Curves.easeInOut,
-                      delay: Durations.extralong4 * 2),
-                ],
-                child: Text(
-                  'perfect place',
-                  style: context.textTheme.displayLarge,
-                ),
-              ),
-              // MyText(),
-              // AnimatedTextKit(
-              //   isRepeatingAnimation: false,
-              //   repeatForever: false,
-              //   animatedTexts: [
-              //     CustomAnimatedText(
-              //       'let\'s select your\nperfect place',
-              //       textStyle: context.textTheme.displayLarge!.copyWith(
-              //         height: 1,
-              //       ),
-              //       textAlign: TextAlign.start,
-              //       rotateOut: false,
-              //       duration: Durations.extralong4,
-              //       alignment: Alignment.centerLeft,
-              //     ),
-              //   ],
-              // ),
-              40.verticalSpace,
+              const HomeHeaderText(),
               const Row(
                 children: [
                   BuyWidget(),
@@ -177,69 +133,6 @@ class _HomeState extends ConsumerState<Home> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class MyText extends StatefulWidget {
-  const MyText({
-    super.key,
-  });
-
-  @override
-  State<MyText> createState() => _MyTextState();
-}
-
-class _MyTextState extends State<MyText> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _offsetAnimation;
-  late Animation<double> _opacityAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    );
-
-    _offsetAnimation = Tween<Offset>(
-      begin: Offset(0, 1), // Starts below the visible area
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-    _opacityAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SlideTransition(
-      position: _offsetAnimation,
-      child: FadeTransition(
-        opacity: _opacityAnimation,
-        child: Text(
-          'let\'s select your\nperfect place',
-          style: context.textTheme.displayLarge,
-        ),
       ),
     );
   }

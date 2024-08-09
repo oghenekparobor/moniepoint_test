@@ -31,13 +31,13 @@ class _MapTileState extends State<MapTile> with SingleTickerProviderStateMixin {
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 7000),
+      duration: const Duration(milliseconds: 8000),
       vsync: this,
     );
 
     _heightAnimation = TweenSequence<double>([
       TweenSequenceItem(
-        tween: Tween(begin: 0, end: 50),
+        tween: Tween(begin: 50, end: 50),
         weight: 1,
       ),
       TweenSequenceItem(
@@ -49,19 +49,23 @@ class _MapTileState extends State<MapTile> with SingleTickerProviderStateMixin {
     _widthAnimation = TweenSequence<double>([
       TweenSequenceItem(
         tween: ConstantTween(0),
-        weight: 2,
+        weight: 5,
       ),
       TweenSequenceItem(
         tween: Tween(begin: 0, end: 120),
-        weight: 3,
+        weight: 2,
+      ),
+      TweenSequenceItem(
+        tween: ConstantTween(120),
+        weight: 15,
       ),
       TweenSequenceItem(
         tween: Tween(begin: 120, end: 50),
-        weight: 3,
+        weight: 2,
       ),
     ]).animate(_controller);
 
-    Future.delayed(Durations.medium1, () {
+    Future.delayed(Durations.extralong1, () {
       _controller.forward();
     });
   }
