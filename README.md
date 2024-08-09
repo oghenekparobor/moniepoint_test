@@ -1,9 +1,6 @@
 # moniepoint_test
 
-https://github.com/oghenekparobor/moniepoint_test/blob/main/screenrecord/test%20recording.mp4
-
-[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://github.com/oghenekparobor/moniepoint_test/blob/main/screenrecord/test%20recording.mp4)
-
+![Video Demo]([assets/demo.gif](https://github.com/oghenekparobor/moniepoint_test/blob/main/screenrecord/testrecording-ezgif.com-video-to-gif-converter.gif))
 
 ### Project Setup
 - Click on the code button to see the repo link
